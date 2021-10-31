@@ -1,0 +1,16 @@
+POST http://localhost:8800/api/markers
+Content-Type: application/json
+
+{
+    "username": "john",
+    "title": "Eiffel tower",
+    "description": "It was an amazing place",
+    "rating": 5,
+    "latitude": 43,
+    "longitude": 10
+}
+
+###
+
+GET http://localhost:8800/api/markers
+Content-Type: application/json
