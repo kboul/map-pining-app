@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 
 import markersRoute from "./routes/markers";
+import usersRoute from "./routes/users";
 
 dotenv.config();
 
@@ -22,6 +23,7 @@ app.get("/", (_, res: Response) => {
 });
 
 app.use("/api/markers", markersRoute);
+app.use("/api/users", usersRoute);
 
 const port = 8800;
 app.listen(port, () => console.log(`Server running at port ${port}`));

@@ -14,3 +14,22 @@ Content-Type: application/json
 
 GET http://localhost:8800/api/markers
 Content-Type: application/json
+
+###
+POST http://localhost:8800/api/users/register
+Content-Type: application/json
+
+{
+    "username": "kostas",
+    "email": "kostas@gmail.com",
+    "password": "123456"
+}
+
+###
+GET http://localhost:8800/api/users/login
+Content-Type: application/json
+
+{
+    "username": "kostas",
+    "password": "123456"
+}
