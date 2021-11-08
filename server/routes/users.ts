@@ -34,7 +34,7 @@ appRouter.get("/login", async (req: Request, res: Response) => {
     const user = await User.findOne({ username: req.body.username });
     if (!user) res.status(400).json("Wrong username or password");
 
-    // valideate password
+    // validate password
     const validPassword = await bcrypt.compare(
       req.body.password,
       user.password
