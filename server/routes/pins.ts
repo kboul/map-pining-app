@@ -15,11 +15,11 @@ appRouter.post("/", async (req: Request, res: Response) => {
   }
 });
 
-// get all markers
+// get all pins
 appRouter.get("/", async (req: Request, res: Response) => {
   try {
-    const markers = await Marker.find();
-    res.status(200).send(markers);
+    const pins = await Marker.find();
+    res.status(200).send(pins);
   } catch (error) {
     res.status(500).json(error);
   }

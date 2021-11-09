@@ -2,7 +2,7 @@ import express, { Application, Response } from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 
-import markersRoute from "./routes/markers";
+import pinsRoute from "./routes/pins";
 import usersRoute from "./routes/users";
 
 dotenv.config();
@@ -22,7 +22,7 @@ app.get("/", (_, res: Response) => {
   res.send("Hello");
 });
 
-app.use("/api/markers", markersRoute);
+app.use("/api/pins", pinsRoute);
 app.use("/api/users", usersRoute);
 
 const port = 8800;

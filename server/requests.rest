@@ -1,4 +1,4 @@
-POST http://localhost:8800/api/markers
+POST http://localhost:8800/api/pins
 Content-Type: application/json
 
 {
@@ -12,7 +12,7 @@ Content-Type: application/json
 
 ###
 
-GET http://localhost:8800/api/markers
+GET http://localhost:8800/api/pins
 Content-Type: application/json
 
 ###
