@@ -2,12 +2,12 @@ POST http://localhost:8800/api/pins
 Content-Type: application/json
 
 {
-    "username": "john",
-    "title": "Eiffel tower",
-    "description": "It was an amazing place",
-    "rating": 5,
-    "latitude": 43,
-    "longitude": 10
+    "username": "kostas",
+    "title": "Brandenburg Gate",
+    "description": "So similar with Parthenon!",
+    "rating": 4,
+    "latitude": 52,
+    "longitude": 13
 }
 
 ###
