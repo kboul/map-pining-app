@@ -1,6 +1,6 @@
-import { Marker, Popup } from "react-leaflet";
 import { format } from "timeago.js";
 
+import MarkerWithResponsivePopup from "./MarkerWithResponsivePopup";
 import { Pin } from "./models";
 import {
   Date,
@@ -13,17 +13,15 @@ import {
   User,
   Username
 } from "./styledComponents";
-import { icon } from "./constants";
 
 export default function Pins({ pins }: { pins: Pin[] }) {
   return (
     <>
       {pins.map((pin: Pin) => (
-        <Marker
-          icon={icon}
+        <MarkerWithResponsivePopup
           key={pin._id}
-          position={{ lat: pin.latitude, lng: pin.longitude }}>
-          <Popup>
+          markerCoords={{ lat: pin.latitude, lng: pin.longitude }}
+          PopupContent={
             <PopupInfo>
               <Label>Place</Label>
               <Place>{pin.title}</Place>
@@ -41,8 +39,8 @@ export default function Pins({ pins }: { pins: Pin[] }) {
               </User>
               <Date>{format(pin.createdAt)}</Date>
             </PopupInfo>
-          </Popup>
-        </Marker>
+          }
+        />
       ))}
     </>
   );
