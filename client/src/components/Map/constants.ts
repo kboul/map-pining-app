@@ -1,4 +1,4 @@
-import L from "leaflet";
+import L, { ResponsivePopupOptions } from "leaflet";
 
 const icon = L.icon({
   iconSize: [25, 41],
@@ -8,12 +8,19 @@ const icon = L.icon({
   shadowUrl: "https://unpkg.com/leaflet@1.6/dist/images/marker-shadow.png"
 });
 
-const position = { lat: 46, lng: 17 };
+const mapOptions = {
+  attribution:
+    '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+  position: { lat: 46, lng: 17 },
+  style: { height: "100vh" },
+  tileUrl: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+  zoom: 5
+};
 
-const mapStyle = { height: "100vh" };
+const respPopupOptions: ResponsivePopupOptions = {
+  hasTip: true,
+  autoPan: true,
+  offset: [15, 20]
+};
 
-const mapZoom = 5;
-
-const tileUrl = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
-
-export { icon, mapStyle, mapZoom, position, tileUrl };
+export { icon, mapOptions, respPopupOptions };

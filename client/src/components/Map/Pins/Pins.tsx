@@ -1,11 +1,11 @@
 import { format } from "timeago.js";
 
-import MarkerWithResponsivePopup from "./MarkerWithResponsivePopup";
-import { Pin } from "./models";
+import MarkerWithResponsivePopup from "../MarkerWithResponsivePopup";
+import { Pin, PinProps } from "./models";
+import { Label } from "../../styledComponents";
 import {
   Date,
   Description,
-  Label,
   Place,
   PopupInfo,
   Star,
@@ -14,7 +14,7 @@ import {
   Username
 } from "./styledComponents";
 
-export default function Pins({ pins }: { pins: Pin[] }) {
+export default function Pins({ pins }: PinProps) {
   return (
     <>
       {pins.map((pin: Pin) => (

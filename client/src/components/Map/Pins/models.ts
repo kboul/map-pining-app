@@ -10,4 +10,8 @@ interface Pin {
   _id: number;
 }
 
-export type { Pin };
+interface PinProps {
+  pins: Pin[];
+}
+
+export type { Pin, PinProps };

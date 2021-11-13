@@ -5,7 +5,7 @@ import L, { CircleMarker, LatLngExpression } from "leaflet";
 import "leaflet-responsive-popup";
 import "leaflet-responsive-popup/leaflet.responsive.popup.css";
 
-import { icon } from "./constants";
+import { icon, respPopupOptions } from "./constants";
 
 interface MarkerWithResponsivePopupProps {
   centerMap?: boolean;
@@ -23,11 +23,9 @@ export default function MarkerWithResponsivePopup({
 
   useEffect(() => {
     const marker = L.marker(markerCoords, { icon });
-    const popup = L.responsivePopup({
-      hasTip: true,
-      autoPan: true,
-      offset: [15, 20]
-    }).setContent(ReactDOMServer.renderToString(PopupContent));
+    const popup = L.responsivePopup(respPopupOptions).setContent(
+      ReactDOMServer.renderToString(PopupContent)
+    );
 
     marker.addTo(map).bindPopup(popup);
 
