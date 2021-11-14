@@ -6,8 +6,8 @@ Content-Type: application/json
     "title": "Brandenburg Gate",
     "description": "So similar with Parthenon!",
     "rating": 4,
-    "latitude": 52,
-    "longitude": 13
+    "lat": 52,
+    "lng": 13
 }
 
 ###

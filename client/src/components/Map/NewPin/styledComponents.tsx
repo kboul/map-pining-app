@@ -19,8 +19,9 @@ const AddPinButton = styled.button`
   border: none;
   padding: 5px;
   border-radius: 5px;
-  color: white;
-  background-color: tomato;
+  color: ${({ disabled }) => (disabled ? "#666666" : "#fff")};
+  background-color: ${({ disabled }) => (disabled ? "#cccccc" : "tomato")};
+  cursor: pointer;
 `;
 
 const NewPinForm = styled.form`

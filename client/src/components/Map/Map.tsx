@@ -1,14 +1,22 @@
+import { useEffect } from "react";
 import { MapContainer, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import "font-awesome/css/font-awesome.min.css";
 
 import NewPin from "./NewPin";
 import Pins from "./Pins";
-import useAxios from "./hooks";
+import { useAppContext, changeState } from "../../context";
+import { useAxios } from "../../hooks";
 import { mapOptions } from "./constants";
 
 export default function Map() {
+  const { dispatch } = useAppContext();
+
   const { data: pins } = useAxios({ method: "get", url: "/pins" });
+
+  useEffect(() => {
+    if (pins.length > 0) dispatch(changeState("pinsChanged", { pins }));
+  }, [pins]);
 
   return (
     <MapContainer
@@ -19,7 +27,7 @@ export default function Map() {
         attribution={mapOptions.attribution}
         url={mapOptions.tileUrl}
       />
-      <Pins pins={pins} />
+      <Pins />
       <NewPin />
     </MapContainer>
   );
