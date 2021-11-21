@@ -5,7 +5,7 @@ import L, { CircleMarker, LatLngExpression } from "leaflet";
 import "leaflet-responsive-popup";
 import "leaflet-responsive-popup/leaflet.responsive.popup.css";
 
-import { icon, respPopupOptions } from "./constants";
+import { circleMarkerOptions, icon } from "./constants";
 
 interface MarkerWithResponsivePopupProps {
   centerMap?: boolean;
@@ -23,7 +23,7 @@ export default function MarkerWithResponsivePopup({
 
   useEffect(() => {
     const marker = L.marker(markerCoords, { icon });
-    const popup = L.responsivePopup(respPopupOptions).setContent(
+    const popup = L.responsivePopup().setContent(
       ReactDOMServer.renderToString(PopupContent)
     );
 
@@ -31,13 +31,12 @@ export default function MarkerWithResponsivePopup({
 
     // Events on marker click
     map.on("popupopen", (e: any) => {
-      highlight.current = L.circleMarker(e.popup.getLatLng(), {
-        radius: 15,
-        opacity: 0,
-        fillColor: "#000000",
-        fillOpacity: 0.3
-      }).addTo(map);
-      if (centerMap) map.flyTo(e.popup.getLatLng());
+      const popupLatLng = e.popup.getLatLng();
+      highlight.current = L.circleMarker(
+        popupLatLng,
+        circleMarkerOptions
+      ).addTo(map);
+      if (centerMap) map.flyTo(popupLatLng);
     });
 
     map.on("popupclose", () => {

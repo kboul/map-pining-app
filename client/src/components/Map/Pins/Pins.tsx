@@ -5,6 +5,7 @@ import { Label } from "../../styledComponents";
 import {
   Date,
   Description,
+  PinContainer,
   Place,
   PopupInfo,
   Star,
@@ -23,29 +24,30 @@ export default function Pins() {
   return (
     <>
       {pins.map((pin: Pin) => (
-        <MarkerWithResponsivePopup
-          key={pin._id}
-          markerCoords={{ lat: pin.lat, lng: pin.lng }}
-          PopupContent={
-            <PopupInfo>
-              <Label>Place</Label>
-              <Place>{pin.title}</Place>
-              <Label>Review</Label>
-              <Description>{pin.description}</Description>
-              <Label>Rating</Label>
-              <StarContainer>
-                {new Array(pin.rating).fill(undefined).map((_, id) => (
-                  <Star className="fa fa-2x fa-star" key={id} />
-                ))}
-              </StarContainer>
-              <Label>Information</Label>
-              <User>
-                Created by <Username>{pin.username}</Username>
-              </User>
-              <Date>{format(pin.createdAt)}</Date>
-            </PopupInfo>
-          }
-        />
+        <PinContainer key={pin._id}>
+          <MarkerWithResponsivePopup
+            markerCoords={{ lat: pin.lat, lng: pin.lng }}
+            PopupContent={
+              <PopupInfo>
+                <Label>Place</Label>
+                <Place>{pin.title}</Place>
+                <Label>Review</Label>
+                <Description>{pin.description}</Description>
+                <Label>Rating</Label>
+                <StarContainer>
+                  {new Array(pin.rating).fill(undefined).map((_, id) => (
+                    <Star className="fa fa-2x fa-star" key={id} />
+                  ))}
+                </StarContainer>
+                <Label>Information</Label>
+                <User>
+                  Created by <Username>{pin.username}</Username>
+                </User>
+                <Date>{format(pin.createdAt)}</Date>
+              </PopupInfo>
+            }
+          />
+        </PinContainer>
       ))}
     </>
   );

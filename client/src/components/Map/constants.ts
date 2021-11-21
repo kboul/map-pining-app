@@ -1,4 +1,4 @@
-import L, { ResponsivePopupOptions } from "leaflet";
+import L from "leaflet";
 
 const icon = L.icon({
   iconSize: [25, 41],
@@ -17,10 +17,11 @@ const mapOptions = {
   zoom: 5
 };
 
-const respPopupOptions: ResponsivePopupOptions = {
-  hasTip: true,
-  autoPan: true,
-  offset: [15, 20]
+const circleMarkerOptions = {
+  radius: 15,
+  opacity: 0,
+  fillColor: "#444242",
+  fillOpacity: 0.3
 };
 
-export { icon, mapOptions, respPopupOptions };
+export { circleMarkerOptions, icon, mapOptions };

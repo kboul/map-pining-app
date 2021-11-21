@@ -36,9 +36,12 @@ const Date = styled.span`
   font-size: 12px;
 `;
 
+const PinContainer = styled.div``;
+
 export {
   Date,
   Description,
+  PinContainer,
   Place,
   PopupInfo,
   Star,
