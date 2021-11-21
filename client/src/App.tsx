@@ -1,5 +1,10 @@
 import Map from "./components/Map";
+import { Provider } from "./context";
 
 export default function App() {
-  return <Map />;
+  return (
+    <Provider>
+      <Map />
+    </Provider>
+  );
 }

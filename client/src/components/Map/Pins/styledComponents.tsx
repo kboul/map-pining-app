@@ -1,18 +1,9 @@
 import styled from "styled-components";
+import { sharedPopupContainer } from "../../styledComponents";
 
 const PopupInfo = styled.div`
-  width: 250px;
-  height: 250px;
-  display: flex;
-  flex-direction: column;
+  ${sharedPopupContainer};
   justify-content: space-around;
-`;
-
-const Label = styled.span`
-  color: tomato;
-  font-size: 13px;
-  border-bottom: 0.5px solid tomato;
-  width: max-content;
 `;
 
 const Description = styled.span`
@@ -45,10 +36,12 @@ const Date = styled.span`
   font-size: 12px;
 `;
 
+const PinContainer = styled.div``;
+
 export {
   Date,
   Description,
-  Label,
+  PinContainer,
   Place,
   PopupInfo,
   Star,

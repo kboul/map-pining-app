@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const Marker = new mongoose.Schema(
+const Pin = new mongoose.Schema(
   {
     username: {
       type: String,
@@ -17,10 +17,10 @@ const Marker = new mongoose.Schema(
       min: 3
     },
     rating: { type: Number, required: true, min: 0, max: 5 },
-    latitude: { type: Number, required: true },
-    longitude: { type: Number, required: true }
+    lat: { type: Number, required: true },
+    lng: { type: Number, required: true }
   },
   { timestamps: true } // creates createdAt, updatedAt
 );
 
-export default mongoose.model("Marker", Marker);
+export default mongoose.model("Pin", Pin);
