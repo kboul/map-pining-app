@@ -8,19 +8,13 @@ import {
 import { Marker, Popup, useMap } from "react-leaflet";
 
 import { Label } from "../../styledComponents";
-import {
-  AddPinButton,
-  NewPinForm,
-  RatingSelect,
-  ReviewTextarea,
-  TitleInput
-} from "./styledComponents";
+import * as Styled from "./styledComponents";
 import { useAxios } from "../../../hooks";
+import { changeState, useAppContext } from "../../../context";
 import { getNewPin } from "./utils";
 import State from "./model";
 import { icon } from "../constants";
 import { initialState } from "./constants";
-import { changeState, useAppContext } from "../../../context";
 
 export default function NewPin() {
   const map = useMap();
@@ -50,7 +44,7 @@ export default function NewPin() {
     (key: string) => (e: ChangeEvent<HTMLSelectElement>) =>
       setValue(key, e.target.value);
 
-  const { requestSuccessful } = useAxios(
+  const { data: newPin, requestSuccessful } = useAxios(
     {
       method: "post",
       url: "/pins",
@@ -68,7 +62,7 @@ export default function NewPin() {
     if (!requestSuccessful) return;
 
     if (popupRef.current) popupRef.current._close();
-    dispatch(changeState("pinsChanged", { pins: [...pins, getNewPin(state)] }));
+    dispatch(changeState("pinsChanged", { pins: [...pins, newPin] }));
     setState(initialState);
   }, [requestSuccessful]);
 
@@ -85,37 +79,37 @@ export default function NewPin() {
     if (markerRef.current) markerRef.current.openPopup();
   }, [newPinPosition]);
 
-  const buttonDisabled = !title || !review;
+  const addPinBtnDisabled = !title || !review;
 
   if (newPinPosition)
     return (
       <Marker position={newPinPosition} icon={icon} ref={markerRef}>
         <Popup ref={popupRef}>
-          <NewPinForm onSubmit={handleSubmit}>
+          <Styled.NewPinForm onSubmit={handleSubmit}>
             <Label>Title</Label>
-            <TitleInput
+            <Styled.TitleInput
               onChange={handleTitleChange("title")}
               placeholder="Enter a title"
               value={title}
             />
             <Label>Review</Label>
-            <ReviewTextarea
+            <Styled.ReviewTextarea
               onChange={handleReviewChange("review")}
               placeholder="Tell us something about the place"
               value={review}
             />
             <Label>Rating</Label>
-            <RatingSelect onChange={handleRatingChange("rating")}>
+            <Styled.RatingSelect onChange={handleRatingChange("rating")}>
               {new Array(5).fill(undefined).map((_, id) => (
                 <option key={id} value={id + 1}>
                   {id + 1}
                 </option>
               ))}
-            </RatingSelect>
-            <AddPinButton disabled={buttonDisabled} type="submit">
+            </Styled.RatingSelect>
+            <Styled.AddPinButton disabled={addPinBtnDisabled} type="submit">
               Add Pin
-            </AddPinButton>
-          </NewPinForm>
+            </Styled.AddPinButton>
+          </Styled.NewPinForm>
         </Popup>
       </Marker>
     );

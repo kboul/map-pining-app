@@ -2,17 +2,7 @@ import { format } from "timeago.js";
 
 import MarkerWithResponsivePopup from "../MarkerWithResponsivePopup";
 import { Label } from "../../styledComponents";
-import {
-  Date,
-  Description,
-  PinContainer,
-  Place,
-  PopupInfo,
-  Star,
-  StarContainer,
-  User,
-  Username
-} from "./styledComponents";
+import * as Styled from "./styledComponents";
 import { useAppContext } from "../../../context";
 import { Pin } from "../../../context/models";
 
@@ -24,30 +14,30 @@ export default function Pins() {
   return (
     <>
       {pins.map((pin: Pin) => (
-        <PinContainer key={pin._id}>
+        <Styled.PinContainer key={pin._id}>
           <MarkerWithResponsivePopup
             markerCoords={{ lat: pin.lat, lng: pin.lng }}
             PopupContent={
-              <PopupInfo>
+              <Styled.PopupInfo>
                 <Label>Place</Label>
-                <Place>{pin.title}</Place>
+                <Styled.Place>{pin.title}</Styled.Place>
                 <Label>Review</Label>
-                <Description>{pin.description}</Description>
+                <Styled.Description>{pin.description}</Styled.Description>
                 <Label>Rating</Label>
-                <StarContainer>
+                <Styled.StarContainer>
                   {new Array(pin.rating).fill(undefined).map((_, id) => (
-                    <Star className="fa fa-2x fa-star" key={id} />
+                    <Styled.Star className="fa fa-2x fa-star" key={id} />
                   ))}
-                </StarContainer>
+                </Styled.StarContainer>
                 <Label>Information</Label>
-                <User>
-                  Created by <Username>{pin.username}</Username>
-                </User>
-                <Date>{format(pin.createdAt)}</Date>
-              </PopupInfo>
+                <Styled.User>
+                  Created by <Styled.Username>{pin.username}</Styled.Username>
+                </Styled.User>
+                <Styled.Date>{format(pin.createdAt)}</Styled.Date>
+              </Styled.PopupInfo>
             }
           />
-        </PinContainer>
+        </Styled.PinContainer>
       ))}
     </>
   );
