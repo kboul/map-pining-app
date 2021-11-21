@@ -1,7 +1,7 @@
 import { JSXElementConstructor, ReactElement, useEffect, useRef } from "react";
 import ReactDOMServer from "react-dom/server";
 import { useMap } from "react-leaflet";
-import L, { CircleMarker, LatLngExpression } from "leaflet";
+import L, { CircleMarker, LatLngExpression, Popup } from "leaflet";
 import "leaflet-responsive-popup";
 import "leaflet-responsive-popup/leaflet.responsive.popup.css";
 
@@ -10,7 +10,7 @@ import { circleMarkerOptions, icon } from "./constants";
 interface MarkerWithResponsivePopupProps {
   centerMap?: boolean;
   markerCoords: LatLngExpression;
-  PopupContent: ReactElement<any, string | JSXElementConstructor<any>>;
+  PopupContent: ReactElement<Popup, string | JSXElementConstructor<Popup>>;
 }
 
 export default function MarkerWithResponsivePopup({

@@ -1,9 +1,10 @@
 import { createContext, ReactNode, useContext, useReducer } from "react";
+
 import { Action, ContextProps, State } from "./models";
 
 // Context
 
-const initialState = { pins: [] };
+const initialState: State = { pins: [] };
 
 const Context = createContext<State | any>(initialState);
 
@@ -35,8 +36,6 @@ function Provider({ children }: ProviderProps) {
 }
 
 // useAppContent hook
-function useAppContext() {
-  return useContext<ContextProps>(Context);
-}
+const useAppContext = () => useContext<ContextProps>(Context);
 
 export { Provider, useAppContext, changeState };

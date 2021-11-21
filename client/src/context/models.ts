@@ -24,7 +24,7 @@ interface Action {
 }
 
 interface ContextProps {
-  state: any;
+  state: State;
   dispatch: Dispatch<Action>;
 }
 
