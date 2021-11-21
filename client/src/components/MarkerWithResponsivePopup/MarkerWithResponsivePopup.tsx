@@ -1,33 +1,32 @@
-import { JSXElementConstructor, ReactElement, useEffect } from "react";
+import { useEffect } from "react";
 import ReactDOMServer from "react-dom/server";
 import { useMap } from "react-leaflet";
-import L, { LatLngExpression, Popup } from "leaflet";
+import L from "leaflet";
 import "leaflet-responsive-popup";
 import "leaflet-responsive-popup/leaflet.responsive.popup.css";
 
 import { BootstrapIcon } from "..";
+import MarkerWithResponsivePopupProps from "./model";
 
-const icon = L.divIcon({
-  html: ReactDOMServer.renderToString(
-    <BootstrapIcon height="32" fill="blue" icon="geoAltFill" width="32" />
-  ),
-  className: "",
-  iconAnchor: [15, 28],
-  popupAnchor: [0, -25]
-});
-
-interface MarkerWithResponsivePopupProps {
-  centerMap?: boolean;
-  markerCoords: LatLngExpression;
-  PopupContent: ReactElement<Popup, string | JSXElementConstructor<Popup>>;
-}
+const getIcon = (color: string) =>
+  L.divIcon({
+    html: ReactDOMServer.renderToString(
+      <BootstrapIcon height="32" fill={color} icon="geoAltFill" width="32" />
+    ),
+    className: "",
+    iconAnchor: [15, 28],
+    popupAnchor: [0, -25]
+  });
 
 export default function MarkerWithResponsivePopup({
   centerMap = true,
   markerCoords,
+  pin,
   PopupContent
 }: MarkerWithResponsivePopupProps) {
   const map = useMap();
+
+  const icon = getIcon(pin.username === "kostas" ? "tomato" : "purple");
 
   useEffect(() => {
     const marker = L.marker(markerCoords, { icon });

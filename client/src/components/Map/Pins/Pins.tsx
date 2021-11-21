@@ -1,7 +1,7 @@
 import { format } from "timeago.js";
 
 import { BootstrapIcon } from "../..";
-import MarkerWithResponsivePopup from "../MarkerWithResponsivePopup";
+import MarkerWithResponsivePopup from "../../MarkerWithResponsivePopup";
 import { useAppContext } from "../../../context";
 import { Label } from "../../styledComponents";
 import * as Styled from "./styledComponents";
@@ -18,6 +18,7 @@ export default function Pins() {
         <Styled.PinContainer key={pin._id}>
           <MarkerWithResponsivePopup
             markerCoords={{ lat: pin.lat, lng: pin.lng }}
+            pin={pin}
             PopupContent={
               <Styled.PopupInfo>
                 <Label>Place</Label>
