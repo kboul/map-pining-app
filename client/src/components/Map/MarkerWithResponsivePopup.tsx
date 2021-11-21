@@ -1,11 +1,20 @@
-import { JSXElementConstructor, ReactElement, useEffect, useRef } from "react";
+import { JSXElementConstructor, ReactElement, useEffect } from "react";
 import ReactDOMServer from "react-dom/server";
 import { useMap } from "react-leaflet";
-import L, { CircleMarker, LatLngExpression, Popup } from "leaflet";
+import L, { LatLngExpression, Popup } from "leaflet";
 import "leaflet-responsive-popup";
 import "leaflet-responsive-popup/leaflet.responsive.popup.css";
 
-import { circleMarkerOptions, icon } from "./constants";
+import { BootstrapIcon } from "..";
+
+const icon = L.divIcon({
+  html: ReactDOMServer.renderToString(
+    <BootstrapIcon height="32" fill="blue" icon="geoAltFill" width="32" />
+  ),
+  className: "",
+  iconAnchor: [15, 28],
+  popupAnchor: [0, -25]
+});
 
 interface MarkerWithResponsivePopupProps {
   centerMap?: boolean;
@@ -19,7 +28,6 @@ export default function MarkerWithResponsivePopup({
   PopupContent
 }: MarkerWithResponsivePopupProps) {
   const map = useMap();
-  const highlight = useRef<CircleMarker>();
 
   useEffect(() => {
     const marker = L.marker(markerCoords, { icon });
@@ -29,18 +37,8 @@ export default function MarkerWithResponsivePopup({
 
     marker.addTo(map).bindPopup(popup);
 
-    // Events on marker click
     map.on("popupopen", (e: any) => {
-      const popupLatLng = e.popup.getLatLng();
-      highlight.current = L.circleMarker(
-        popupLatLng,
-        circleMarkerOptions
-      ).addTo(map);
-      if (centerMap) map.flyTo(popupLatLng);
-    });
-
-    map.on("popupclose", () => {
-      if (highlight.current) map.removeLayer(highlight.current);
+      if (centerMap) map.flyTo(e.popup.getLatLng());
     });
   }, []);
 

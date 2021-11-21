@@ -6,6 +6,7 @@ import {
   useState
 } from "react";
 import { Marker, Popup, useMap } from "react-leaflet";
+import L from "leaflet";
 
 import { Label } from "../../styledComponents";
 import * as Styled from "./styledComponents";
@@ -13,7 +14,6 @@ import { useAxios } from "../../../hooks";
 import { changeState, useAppContext } from "../../../context";
 import { getNewPin } from "./utils";
 import State from "./model";
-import { icon } from "../constants";
 import { initialState } from "./constants";
 
 export default function NewPin() {
@@ -79,6 +79,7 @@ export default function NewPin() {
     if (markerRef.current) markerRef.current.openPopup();
   }, [newPinPosition]);
 
+  const icon = L.divIcon({ html: "", className: "" });
   const addPinBtnDisabled = !title || !review;
 
   if (newPinPosition)
