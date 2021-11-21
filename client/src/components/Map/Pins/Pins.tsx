@@ -1,9 +1,10 @@
 import { format } from "timeago.js";
 
+import { BootstrapIcon } from "../..";
 import MarkerWithResponsivePopup from "../MarkerWithResponsivePopup";
+import { useAppContext } from "../../../context";
 import { Label } from "../../styledComponents";
 import * as Styled from "./styledComponents";
-import { useAppContext } from "../../../context";
 import { Pin } from "../../../context/models";
 
 export default function Pins() {
@@ -26,7 +27,7 @@ export default function Pins() {
                 <Label>Rating</Label>
                 <Styled.StarContainer>
                   {new Array(pin.rating).fill(undefined).map((_, id) => (
-                    <Styled.Star className="fa fa-2x fa-star" key={id} />
+                    <BootstrapIcon fill="gold" icon="starFill" key={id} />
                   ))}
                 </Styled.StarContainer>
                 <Label>Information</Label>

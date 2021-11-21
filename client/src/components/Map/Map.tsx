@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { MapContainer, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-import "font-awesome/css/font-awesome.min.css";
 
 import NewPin from "./NewPin";
 import Pins from "./Pins";

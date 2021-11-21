@@ -10,8 +10,8 @@ interface CustomToggleProps {
   onClick: () => void;
 }
 
-const CustomToggle = forwardRef(({ onClick }: CustomToggleProps) => (
-  <ImageContainer>
+const CustomToggle = forwardRef(({ onClick }: CustomToggleProps, ref) => (
+  <ImageContainer ref={ref as any}>
     <Image
       width="32"
       height="32"

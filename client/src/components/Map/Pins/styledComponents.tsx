@@ -15,10 +15,6 @@ const Place = styled.h3`
   margin: 0px;
 `;
 
-const Star = styled.span`
-  color: gold;
-`;
-
 const StarContainer = styled.div`
   display: flex;
   flex-direction: row;
@@ -44,7 +40,6 @@ export {
   PinContainer,
   Place,
   PopupInfo,
-  Star,
   StarContainer,
   User,
   Username
