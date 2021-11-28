@@ -14,6 +14,7 @@ interface Pin {
 
 interface State {
   pins: Pin[];
+  showRegisterModal: boolean;
 }
 
 interface Action {

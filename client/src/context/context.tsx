@@ -4,7 +4,7 @@ import { Action, ContextProps, State } from "./models";
 
 // Context
 
-const initialState: State = { pins: [] };
+const initialState: State = { pins: [], showRegisterModal: false };
 
 const Context = createContext<State | any>(initialState);
 
@@ -14,10 +14,17 @@ const changeState = (type: string, payload: Object): Action => ({
   payload
 });
 
+const types = {
+  pinsChanged: "pinsChanged",
+  registerModalToggled: "registerModalToggled"
+};
+
 const reducer = (state: State, action: Action) => {
   switch (action.type) {
-    case "pinsChanged":
+    case types.pinsChanged:
       return { ...state, pins: action.payload.pins };
+    case types.registerModalToggled:
+      return { ...state, showRegisterModal: action.payload.show };
     default:
       return state;
   }
@@ -38,4 +45,4 @@ function Provider({ children }: ProviderProps) {
 // useAppContent hook
 const useAppContext = () => useContext<ContextProps>(Context);
 
-export { Provider, useAppContext, changeState };
+export { Provider, useAppContext, changeState, types };

@@ -11,7 +11,7 @@ import L from "leaflet";
 import { Label } from "../../styledComponents";
 import * as Styled from "./styledComponents";
 import { useAxios } from "../../../hooks";
-import { changeState, useAppContext } from "../../../context";
+import { changeState, useAppContext, types } from "../../../context";
 import { getNewPin } from "./utils";
 import State from "./model";
 import { initialState } from "./constants";
@@ -62,7 +62,7 @@ export default function NewPin() {
     if (!requestSuccessful) return;
 
     if (popupRef.current) popupRef.current._close();
-    dispatch(changeState("pinsChanged", { pins: [...pins, newPin] }));
+    dispatch(changeState(types.pinsChanged, { pins: [...pins, newPin] }));
     setState(initialState);
   }, [requestSuccessful]);
 

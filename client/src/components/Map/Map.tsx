@@ -4,7 +4,7 @@ import "leaflet/dist/leaflet.css";
 
 import NewPin from "./NewPin";
 import Pins from "./Pins";
-import { useAppContext, changeState } from "../../context";
+import { useAppContext, changeState, types } from "../../context";
 import { useAxios } from "../../hooks";
 import { mapOptions } from "./constants";
 
@@ -14,7 +14,7 @@ export default function Map() {
   const { data: pins } = useAxios({ method: "get", url: "/pins" });
 
   useEffect(() => {
-    if (pins.length > 0) dispatch(changeState("pinsChanged", { pins }));
+    if (pins.length > 0) dispatch(changeState(types.pinsChanged, { pins }));
   }, [pins]);
 
   return (
