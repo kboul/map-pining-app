@@ -1,16 +1,14 @@
 import { forwardRef } from "react";
 import { Image } from "react-bootstrap";
-import styled from "styled-components";
 
-const ImageContainer = styled.div`
-  cursor: pointer;
-`;
+import { ImageContainer } from "./styledComponents";
 
-interface CustomToggleProps {
+interface AvatarImageProps {
   onClick: () => void;
 }
 
-const CustomToggle = forwardRef(({ onClick }: CustomToggleProps, ref) => (
+// Source: https://codediode.io/lessons/198632-default-avatars-with-username-initials
+const AvatarImage = forwardRef(({ onClick }: AvatarImageProps, ref) => (
   <ImageContainer ref={ref as any}>
     <Image
       width="32"
@@ -22,4 +20,4 @@ const CustomToggle = forwardRef(({ onClick }: CustomToggleProps, ref) => (
   </ImageContainer>
 ));
 
-export default CustomToggle;
+export default AvatarImage;

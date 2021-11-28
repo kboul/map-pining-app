@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import { Dropdown } from "react-bootstrap";
 
-import CustomToggle from "./CustomToggle";
+import AvatarInitials from "./AvatarInitials";
 
 interface AvatarProps {
   children: ReactNode;
@@ -10,7 +10,7 @@ interface AvatarProps {
 export default function Avatar({ children }: AvatarProps) {
   return (
     <Dropdown>
-      <Dropdown.Toggle as={CustomToggle} />
+      <Dropdown.Toggle as={AvatarInitials} />
       <Dropdown.Menu align="end">{children}</Dropdown.Menu>
     </Dropdown>
   );
