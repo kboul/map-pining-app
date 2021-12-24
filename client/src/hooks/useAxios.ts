@@ -28,9 +28,7 @@ export default function useAxios(axiosParams: AxiosParams, callApi?: boolean) {
   };
 
   useEffect(() => {
-    const doFetchData = () => fetchData(axiosParams);
-    if (axiosParams.method === "get") doFetchData();
-    else if (callApi) doFetchData();
+    if (axiosParams.method === "get" || callApi) fetchData(axiosParams);
   }, [callApi]);
 
   return { data, error, loading, requestSuccessful };

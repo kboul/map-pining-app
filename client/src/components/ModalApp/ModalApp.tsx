@@ -18,11 +18,6 @@ export default function ModalApp({
   show,
   title
 }: ModalAppProps) {
-  const handleActionBtnClick = () => {
-    onAction();
-    onClose();
-  };
-
   return (
     <Modal animation={false} centered show={show} onHide={onClose}>
       <Modal.Header closeButton>
@@ -35,7 +30,7 @@ export default function ModalApp({
         </Button>
         <Button
           disabled={actionBtnDisabled}
-          onClick={handleActionBtnClick}
+          onClick={onAction}
           variant="primary">
           {title}
         </Button>

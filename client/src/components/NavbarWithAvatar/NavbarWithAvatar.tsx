@@ -5,7 +5,10 @@ import Avatar from "../Avatar";
 import RegisterModal from "../RegisterModal";
 
 export default function NavbarWithAvatar() {
-  const { dispatch } = useAppContext();
+  const {
+    state: { showRegisterModal },
+    dispatch
+  } = useAppContext();
 
   const handleRegisterModalOpen = () =>
     dispatch(changeState(types.registerModalToggled, { show: true }));
@@ -22,7 +25,7 @@ export default function NavbarWithAvatar() {
           <Dropdown.Item>Login</Dropdown.Item>
         </Avatar>
       </Container>
-      <RegisterModal />
+      {showRegisterModal && <RegisterModal />}
     </Navbar>
   );
 }

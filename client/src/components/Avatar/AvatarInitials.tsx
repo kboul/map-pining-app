@@ -17,7 +17,7 @@ const AvatarCircleInitials = styled.div`
   overflow: hidden;
   user-select: none;
   color: rgb(18, 18, 18);
-  background-color: rgb(255, 87, 34);
+  background-color: rgb(255, 254, 255);
 `;
 
 interface AvatarInitialsProps {
