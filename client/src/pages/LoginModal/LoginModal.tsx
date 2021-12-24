@@ -1,38 +1,44 @@
 import { ChangeEvent, useEffect, useState } from "react";
 import { Alert, Form } from "react-bootstrap";
 
-import { changeState, types, useAppContext } from "../../context";
 import { ModalApp } from "../../components";
+import { changeState, types, useAppContext } from "../../context";
 import { useAxios } from "../../hooks";
 import { getFields } from "./utils";
 
-export default function RegisterModal() {
+export default function LoginModal() {
   const {
-    state: { showRegisterModal },
+    state: { showLoginModal },
     dispatch
   } = useAppContext();
 
   const [localState, setLocalState] = useState({
     username: "",
-    email: "",
     password: "",
     postData: {},
     callApi: false
   });
 
-  const handleRegisterModalClose = () =>
-    dispatch(changeState(types.registerModalToggled, { show: false }));
+  const handleLoginModalClose = () =>
+    dispatch(changeState(types.loginModalToggled, { show: false }));
 
-  const { username, email, password, postData, callApi } = localState;
+  const { username, password, postData, callApi } = localState;
 
   const { data, error } = useAxios(
-    { method: "post", url: "/users/register", data: postData },
+    { method: "post", url: "/users/login", data: postData },
     callApi
   );
 
   useEffect(() => {
     if (!data) return;
-    if (data && data.userId) setTimeout(() => handleRegisterModalClose(), 1000);
+
+    if (data && data.username) {
+      dispatch(
+        changeState(types.currentUserChanged, { currentUser: data.username })
+      );
+
+      setTimeout(() => handleLoginModalClose(), 1000);
+    }
   }, [data]);
 
   useEffect(() => {
@@ -46,7 +52,7 @@ export default function RegisterModal() {
   const handleAction = () => {
     setLocalState(prevState => ({
       ...prevState,
-      postData: { username, email, password },
+      postData: { username, password },
       callApi: true
     }));
   };
@@ -58,19 +64,19 @@ export default function RegisterModal() {
     }));
   };
 
-  const actionBtnDisabled = !username || !email || !password;
+  const actionBtnDisabled = !username || !password;
 
-  const fields = getFields(username, email, password);
+  const fields = getFields(username, password);
 
   return (
     <ModalApp
       actionBtnDisabled={actionBtnDisabled}
       onAction={handleAction}
-      onClose={handleRegisterModalClose}
-      show={showRegisterModal}
-      title="Register">
+      onClose={handleLoginModalClose}
+      show={showLoginModal}
+      title="Login">
       {fields.map(({ id, label, name, type, value }) => (
-        <Form.Group className="mb-3" key={`register-form-group-${id}`}>
+        <Form.Group className="mb-3" key={`login-form-group-${id}`}>
           <Form.Label>{label}</Form.Label>
           <Form.Control
             isInvalid={!value}

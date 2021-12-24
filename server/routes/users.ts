@@ -21,14 +21,14 @@ appRouter.post("/register", async (req: Request, res: Response) => {
 
     // save user and respond
     const user = await newUser.save();
-    res.status(201).json(user._id);
+    res.status(201).json({ userId: user._id });
   } catch (error) {
     res.status(500).json(error);
   }
 });
 
 // login
-appRouter.get("/login", async (req: Request, res: Response) => {
+appRouter.post("/login", async (req: Request, res: Response) => {
   try {
     // find user
     const user = await User.findOne({ username: req.body.username });

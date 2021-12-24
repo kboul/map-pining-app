@@ -11,8 +11,8 @@ interface AvatarImageProps {
 const AvatarImage = forwardRef(({ onClick }: AvatarImageProps, ref) => (
   <ImageContainer ref={ref as any}>
     <Image
-      width="32"
-      height="32"
+      width="40"
+      height="40"
       src="https://cdn3.iconfinder.com/data/icons/vector-icons-6/96/256-512.png"
       roundedCircle
       onClick={onClick}

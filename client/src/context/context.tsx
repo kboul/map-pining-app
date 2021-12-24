@@ -4,7 +4,12 @@ import { Action, ContextProps, State } from "./models";
 
 // Context
 
-const initialState: State = { pins: [], showRegisterModal: false };
+const initialState: State = {
+  pins: [],
+  showRegisterModal: false,
+  showLoginModal: false,
+  currentUser: ""
+};
 
 const Context = createContext<State | any>(initialState);
 
@@ -15,16 +20,23 @@ const changeState = (type: string, payload: Object): Action => ({
 });
 
 const types = {
+  currentUserChanged: "currentUserChanged",
+  loginModalToggled: "loginModalToggled",
   pinsChanged: "pinsChanged",
   registerModalToggled: "registerModalToggled"
 };
 
 const reducer = (state: State, action: Action) => {
   switch (action.type) {
+    case types.currentUserChanged:
+      return { ...state, currentUser: action.payload.currentUser };
+    case types.loginModalToggled:
+      return { ...state, showLoginModal: action.payload.show };
     case types.pinsChanged:
       return { ...state, pins: action.payload.pins };
     case types.registerModalToggled:
       return { ...state, showRegisterModal: action.payload.show };
+
     default:
       return state;
   }

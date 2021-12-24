@@ -7,6 +7,7 @@ import "leaflet-responsive-popup/leaflet.responsive.popup.css";
 
 import { BootstrapIcon } from "../../../components";
 import MarkerWithResponsivePopupProps from "./model";
+import { useAppContext } from "../../../context";
 
 const getIcon = (color: string) =>
   L.divIcon({
@@ -26,7 +27,11 @@ export default function MarkerWithResponsivePopup({
 }: MarkerWithResponsivePopupProps) {
   const map = useMap();
 
-  const icon = getIcon(pin.username === "kostas" ? "tomato" : "purple");
+  const {
+    state: { currentUser }
+  } = useAppContext();
+
+  const icon = getIcon(pin.username === currentUser ? "tomato" : "purple");
 
   useEffect(() => {
     const marker = L.marker(markerCoords, { icon });
@@ -39,7 +44,7 @@ export default function MarkerWithResponsivePopup({
     map.on("popupopen", (e: any) => {
       if (centerMap) map.flyTo(e.popup.getLatLng());
     });
-  }, []);
+  }, [currentUser]);
 
   return null;
 }

@@ -1,5 +1,6 @@
 import { forwardRef } from "react";
 import styled from "styled-components";
+import { useAppContext } from "../../context";
 
 import { ImageContainer } from "./styledComponents";
 
@@ -24,10 +25,18 @@ interface AvatarInitialsProps {
   onClick: () => void;
 }
 
-const AvatarInitials = forwardRef(({ onClick }: AvatarInitialsProps, ref) => (
-  <ImageContainer ref={ref as any}>
-    <AvatarCircleInitials onClick={onClick}>KV</AvatarCircleInitials>
-  </ImageContainer>
-));
+const AvatarInitials = forwardRef(({ onClick }: AvatarInitialsProps, ref) => {
+  const {
+    state: { currentUser }
+  } = useAppContext();
+
+  return (
+    <ImageContainer ref={ref as any}>
+      <AvatarCircleInitials onClick={onClick}>
+        {currentUser.substring(0, 2).toUpperCase()}
+      </AvatarCircleInitials>
+    </ImageContainer>
+  );
+});
 
 export default AvatarInitials;

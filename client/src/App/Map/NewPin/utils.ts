@@ -1,7 +1,7 @@
 import State from "./model";
 
-const getNewPin = (state: State) => ({
-  username: "kostas",
+const getNewPin = (currentUser: string, state: State) => ({
+  username: currentUser,
   title: state.title,
   description: state.review,
   rating: state.rating,

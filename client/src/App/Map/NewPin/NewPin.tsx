@@ -19,7 +19,7 @@ import { initialState } from "./constants";
 export default function NewPin() {
   const map = useMap();
   const {
-    state: { pins },
+    state: { currentUser, pins },
     dispatch
   } = useAppContext();
 
@@ -44,27 +44,30 @@ export default function NewPin() {
     (key: string) => (e: ChangeEvent<HTMLSelectElement>) =>
       setValue(key, e.target.value);
 
-  const { data: newPin, requestSuccessful } = useAxios(
+  const { data: newPin } = useAxios(
     {
       method: "post",
       url: "/pins",
-      data: getNewPin(state)
+      data: getNewPin(currentUser, state)
     },
     callApi
   );
 
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
+
+    if (!currentUser) return alert("Please login to be able to save a pin!");
+
     setValue("callApi", true);
   };
 
   useEffect(() => {
-    if (!requestSuccessful) return;
+    if (!newPin) return;
 
     if (popupRef.current) popupRef.current._close();
     dispatch(changeState(types.pinsChanged, { pins: [...pins, newPin] }));
     setState(initialState);
-  }, [requestSuccessful]);
+  }, [newPin]);
 
   useEffect(() => {
     if (!map) return;

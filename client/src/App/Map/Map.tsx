@@ -14,7 +14,8 @@ export default function Map() {
   const { data: pins } = useAxios({ method: "get", url: "/pins" });
 
   useEffect(() => {
-    if (pins.length > 0) dispatch(changeState(types.pinsChanged, { pins }));
+    if (pins && pins.length > 0)
+      dispatch(changeState(types.pinsChanged, { pins }));
   }, [pins]);
 
   return (

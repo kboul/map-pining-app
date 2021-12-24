@@ -13,7 +13,9 @@ interface Pin {
 }
 
 interface State {
+  currentUser: string;
   pins: Pin[];
+  showLoginModal: boolean;
   showRegisterModal: boolean;
 }
 
