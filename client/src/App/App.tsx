@@ -1,5 +1,6 @@
-import { Map, NavbarWithAvatar } from "./components";
-import { Provider } from "./context";
+import Map from "./Map";
+import NavbarWithAvatar from "./NavbarWithAvatar";
+import { Provider } from "../context";
 
 export default function App() {
   return (

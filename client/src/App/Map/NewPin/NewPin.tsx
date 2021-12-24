@@ -8,7 +8,7 @@ import {
 import { Marker, Popup, useMap } from "react-leaflet";
 import L from "leaflet";
 
-import { Label } from "../../styledComponents";
+import { Label } from "../styledComponents";
 import * as Styled from "./styledComponents";
 import { useAxios } from "../../../hooks";
 import { changeState, useAppContext, types } from "../../../context";

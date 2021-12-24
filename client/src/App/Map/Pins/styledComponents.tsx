@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { sharedPopupContainer } from "../../styledComponents";
+import { sharedPopupContainer } from "../styledComponents";
 
 const PopupInfo = styled.div`
   ${sharedPopupContainer};

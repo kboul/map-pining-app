@@ -1,7 +1,7 @@
 import { JSXElementConstructor, ReactElement } from "react";
 import { LatLngExpression, Popup } from "leaflet";
 
-import { Pin } from "../../context/models";
+import { Pin } from "../../../context/models";
 
 export default interface MarkerWithResponsivePopupProps {
   centerMap?: boolean;

@@ -1,3 +1,3 @@
+export { default as Avatar } from "./Avatar";
 export { default as BootstrapIcon } from "./BootstrapIcon";
-export { default as Map } from "./Map";
-export { default as NavbarWithAvatar } from "./NavbarWithAvatar";
+export { default as ModalApp } from "./ModalApp";

@@ -1,8 +1,8 @@
 import { Container, Dropdown, Navbar } from "react-bootstrap";
 
 import { changeState, useAppContext, types } from "../../context";
-import Avatar from "../Avatar";
-import RegisterModal from "../RegisterModal";
+import { Avatar } from "../../components";
+import RegisterModal from "../../pages/RegisterModal";
 
 export default function NavbarWithAvatar() {
   const {

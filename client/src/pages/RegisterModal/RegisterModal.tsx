@@ -2,7 +2,7 @@ import { ChangeEvent, useEffect, useState } from "react";
 import { Alert, Form } from "react-bootstrap";
 
 import { changeState, types, useAppContext } from "../../context";
-import ModalApp from "../ModalApp";
+import { ModalApp } from "../../components";
 import { useAxios } from "../../hooks";
 import { getFields } from "./utils";
 

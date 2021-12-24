@@ -1,9 +1,9 @@
 import { format } from "timeago.js";
 
-import { BootstrapIcon } from "../..";
-import MarkerWithResponsivePopup from "../../MarkerWithResponsivePopup";
+import { BootstrapIcon } from "../../../components";
+import MarkerWithResponsivePopup from "../MarkerWithResponsivePopup";
 import { useAppContext } from "../../../context";
-import { Label } from "../../styledComponents";
+import { Label } from "../styledComponents";
 import * as Styled from "./styledComponents";
 import { Pin } from "../../../context/models";
 
