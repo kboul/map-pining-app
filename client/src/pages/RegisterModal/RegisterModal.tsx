@@ -5,6 +5,7 @@ import { changeState, types, useAppContext } from "../../context";
 import { ModalApp } from "../../components";
 import { useAxios } from "../../hooks";
 import { getFields } from "./utils";
+import { initialState } from "./constants";
 
 export default function RegisterModal() {
   const {
@@ -12,16 +13,7 @@ export default function RegisterModal() {
     dispatch
   } = useAppContext();
 
-  const [localState, setLocalState] = useState({
-    username: "",
-    email: "",
-    password: "",
-    postData: {},
-    callApi: false
-  });
-
-  const handleRegisterModalClose = () =>
-    dispatch(changeState(types.registerModalToggled, { show: false }));
+  const [localState, setLocalState] = useState(initialState);
 
   const { username, email, password, postData, callApi } = localState;
 
@@ -32,7 +24,9 @@ export default function RegisterModal() {
 
   useEffect(() => {
     if (!data) return;
-    if (data && data.userId) setTimeout(() => handleRegisterModalClose(), 1000);
+    if (data && data.userId) handleRegisterModalClose();
+
+    return () => setLocalState(initialState);
   }, [data]);
 
   useEffect(() => {
@@ -57,6 +51,9 @@ export default function RegisterModal() {
       [e.target.name]: e.target.value
     }));
   };
+
+  const handleRegisterModalClose = () =>
+    dispatch(changeState(types.registerModalToggled, { show: false }));
 
   const actionBtnDisabled = !username || !email || !password;
 
