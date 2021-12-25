@@ -29,7 +29,11 @@ const types = {
 const reducer = (state: State, action: Action) => {
   switch (action.type) {
     case types.currentUserChanged:
-      return { ...state, currentUser: action.payload.currentUser };
+      return {
+        ...state,
+        currentUser: action.payload.currentUser,
+        showLoginModal: action.payload.showLoginModal ?? state.showLoginModal
+      };
     case types.loginModalToggled:
       return { ...state, showLoginModal: action.payload.show };
     case types.pinsChanged:

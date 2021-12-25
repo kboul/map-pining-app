@@ -5,6 +5,7 @@ import { ModalApp } from "../../components";
 import { changeState, types, useAppContext } from "../../context";
 import { useAxios } from "../../hooks";
 import { getFields } from "./utils";
+import { initialState } from "./constants";
 
 export default function LoginModal() {
   const {
@@ -12,15 +13,7 @@ export default function LoginModal() {
     dispatch
   } = useAppContext();
 
-  const [localState, setLocalState] = useState({
-    username: "",
-    password: "",
-    postData: {},
-    callApi: false
-  });
-
-  const handleLoginModalClose = () =>
-    dispatch(changeState(types.loginModalToggled, { show: false }));
+  const [localState, setLocalState] = useState(initialState);
 
   const { username, password, postData, callApi } = localState;
 
@@ -32,13 +25,16 @@ export default function LoginModal() {
   useEffect(() => {
     if (!data) return;
 
-    if (data && data.username) {
+    if (data && data.username)
       dispatch(
-        changeState(types.currentUserChanged, { currentUser: data.username })
+        changeState(types.currentUserChanged, {
+          currentUser: data.username,
+          showLoginModal: false
+        })
       );
 
-      setTimeout(() => handleLoginModalClose(), 1000);
-    }
+    // https://stackoverflow.com/questions/54954385/react-useeffect-causing-cant-perform-a-react-state-update-on-an-unmounted-comp
+    return () => setLocalState(initialState);
   }, [data]);
 
   useEffect(() => {
@@ -63,6 +59,9 @@ export default function LoginModal() {
       [e.target.name]: e.target.value
     }));
   };
+
+  const handleLoginModalClose = () =>
+    dispatch(changeState(types.loginModalToggled, { show: false }));
 
   const actionBtnDisabled = !username || !password;
 
