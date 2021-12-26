@@ -56,7 +56,11 @@ export default function NewPin() {
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
 
-    if (!currentUser) return alert("Please login to be able to save a pin!");
+    if (!currentUser) {
+      popupRef.current._close();
+      setState(initialState);
+      return alert("Please login to be able to save a pin!");
+    }
 
     setValue("callApi", true);
   };
