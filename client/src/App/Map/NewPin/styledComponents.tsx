@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { sharedPopupContainer } from "../../styledComponents";
+import { sharedPopupContainer } from "../styledComponents";
 
 const sharedInputTextarea = css`
   border: none;

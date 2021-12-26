@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { sharedPopupContainer } from "../../styledComponents";
+import { sharedPopupContainer } from "../styledComponents";
 
 const PopupInfo = styled.div`
   ${sharedPopupContainer};
@@ -13,10 +13,6 @@ const Description = styled.span`
 
 const Place = styled.h3`
   margin: 0px;
-`;
-
-const Star = styled.span`
-  color: gold;
 `;
 
 const StarContainer = styled.div`
@@ -44,7 +40,6 @@ export {
   PinContainer,
   Place,
   PopupInfo,
-  Star,
   StarContainer,
   User,
   Username

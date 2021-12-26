@@ -6,20 +6,20 @@ import {
   useState
 } from "react";
 import { Marker, Popup, useMap } from "react-leaflet";
+import L from "leaflet";
 
-import { Label } from "../../styledComponents";
+import { Label } from "../styledComponents";
 import * as Styled from "./styledComponents";
 import { useAxios } from "../../../hooks";
-import { changeState, useAppContext } from "../../../context";
+import { changeState, useAppContext, types } from "../../../context";
 import { getNewPin } from "./utils";
 import State from "./model";
-import { icon } from "../constants";
 import { initialState } from "./constants";
 
 export default function NewPin() {
   const map = useMap();
   const {
-    state: { pins },
+    state: { currentUser, pins },
     dispatch
   } = useAppContext();
 
@@ -44,27 +44,34 @@ export default function NewPin() {
     (key: string) => (e: ChangeEvent<HTMLSelectElement>) =>
       setValue(key, e.target.value);
 
-  const { data: newPin, requestSuccessful } = useAxios(
+  const { data: newPin } = useAxios(
     {
       method: "post",
       url: "/pins",
-      data: getNewPin(state)
+      data: getNewPin(currentUser, state)
     },
     callApi
   );
 
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
+
+    if (!currentUser) {
+      popupRef.current._close();
+      setState(initialState);
+      return alert("Please login to be able to save a pin!");
+    }
+
     setValue("callApi", true);
   };
 
   useEffect(() => {
-    if (!requestSuccessful) return;
+    if (!newPin) return;
 
     if (popupRef.current) popupRef.current._close();
-    dispatch(changeState("pinsChanged", { pins: [...pins, newPin] }));
+    dispatch(changeState(types.pinsChanged, { pins: [...pins, newPin] }));
     setState(initialState);
-  }, [requestSuccessful]);
+  }, [newPin]);
 
   useEffect(() => {
     if (!map) return;
@@ -79,6 +86,7 @@ export default function NewPin() {
     if (markerRef.current) markerRef.current.openPopup();
   }, [newPinPosition]);
 
+  const icon = L.divIcon({ html: "", className: "" });
   const addPinBtnDisabled = !title || !review;
 
   if (newPinPosition)

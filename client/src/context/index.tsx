@@ -1,1 +1,1 @@
-export { Provider, useAppContext, changeState } from "./context";
+export { Provider, useAppContext, changeState, types } from "./context";
