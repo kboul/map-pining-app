@@ -8,7 +8,7 @@ const initialState: State = {
   pins: [],
   showRegisterModal: false,
   showLoginModal: false,
-  currentUser: ""
+  currentUser: localStorage.getItem("username") || ""
 };
 
 const Context = createContext<State | any>(initialState);

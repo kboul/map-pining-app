@@ -82,7 +82,6 @@ export default function RegisterModal() {
           </Form.Control.Feedback>
         </Form.Group>
       ))}
-
       {error && <Alert variant="danger">Something went wrong!</Alert>}
     </ModalApp>
   );

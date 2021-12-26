@@ -25,13 +25,15 @@ export default function LoginModal() {
   useEffect(() => {
     if (!data) return;
 
-    if (data && data.username)
+    if (data && data.username) {
       dispatch(
         changeState(types.currentUserChanged, {
           currentUser: data.username,
           showLoginModal: false
         })
       );
+      localStorage.setItem("username", data.username);
+    }
 
     // https://stackoverflow.com/questions/54954385/react-useeffect-causing-cant-perform-a-react-state-update-on-an-unmounted-comp
     return () => setLocalState(initialState);
@@ -90,7 +92,6 @@ export default function LoginModal() {
           </Form.Control.Feedback>
         </Form.Group>
       ))}
-
       {error && <Alert variant="danger">Something went wrong!</Alert>}
     </ModalApp>
   );

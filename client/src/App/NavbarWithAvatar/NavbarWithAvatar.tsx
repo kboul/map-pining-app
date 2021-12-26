@@ -18,6 +18,7 @@ export default function NavbarWithAvatar() {
 
   const handleLogout = () => {
     dispatch(changeState(types.currentUserChanged, { currentUser: "" }));
+    localStorage.removeItem("username");
   };
 
   return (
