@@ -40,12 +40,12 @@ export default function LoginModal() {
   }, [data]);
 
   useEffect(() => {
-    if (error)
+    if (callApi)
       setLocalState(prevState => ({
         ...prevState,
         callApi: false
       }));
-  }, [error]);
+  }, [callApi]);
 
   const handleAction = () => {
     setLocalState(prevState => ({
@@ -92,7 +92,7 @@ export default function LoginModal() {
           </Form.Control.Feedback>
         </Form.Group>
       ))}
-      {error && <Alert variant="danger">Something went wrong!</Alert>}
+      {error && <Alert variant="danger">{error}</Alert>}
     </ModalApp>
   );
 }

@@ -30,12 +30,12 @@ export default function RegisterModal() {
   }, [data]);
 
   useEffect(() => {
-    if (error)
+    if (callApi)
       setLocalState(prevState => ({
         ...prevState,
         callApi: false
       }));
-  }, [error]);
+  }, [callApi]);
 
   const handleAction = () => {
     setLocalState(prevState => ({

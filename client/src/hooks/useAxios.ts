@@ -19,7 +19,7 @@ export default function useAxios(axiosParams: AxiosParams, callApi?: boolean) {
       setData(result.data);
       setError("");
     } catch (err: any) {
-      setError(err);
+      setError(err.response.data.message);
       setData(null);
     } finally {
       setLoading(false);
