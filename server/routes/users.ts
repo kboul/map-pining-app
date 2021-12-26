@@ -23,7 +23,9 @@ appRouter.post("/register", async (req: Request, res: Response) => {
     const user = await newUser.save();
     res.status(201).json({ userId: user._id });
   } catch (error) {
-    res.status(500).json({ message: "Something went wrong, try again" });
+    res
+      .status(500)
+      .json({ message: "Something went wrong, please try again." });
   }
 });
 
@@ -45,7 +47,9 @@ appRouter.post("/login", async (req: Request, res: Response) => {
 
     res.status(200).send({ _id: user._id, username: user.username });
   } catch (error) {
-    res.status(500).json({ message: "Something went wrong, try again" });
+    res
+      .status(500)
+      .json({ message: "Something went wrong, please try again." });
   }
 });
 
