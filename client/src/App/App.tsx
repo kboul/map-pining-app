@@ -1,12 +1,11 @@
-import { AppNavbar } from "../components";
-import Map from "./Map";
+import { AppNavbar, AppMap } from "../components";
 import { Provider } from "../context";
 
 export default function App() {
   return (
     <Provider>
       <AppNavbar />
-      <Map />
+      <AppMap />
     </Provider>
   );
 }

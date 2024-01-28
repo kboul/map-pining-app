@@ -5,7 +5,7 @@ import L from "leaflet";
 import "leaflet-responsive-popup";
 import "leaflet-responsive-popup/leaflet.responsive.popup.css";
 
-import { BootstrapIcon } from "../../../components";
+import { BootstrapIcon } from "../..";
 import MarkerWithResponsivePopupProps from "./model";
 import { useAppContext } from "../../../context";
 

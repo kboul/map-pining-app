@@ -8,7 +8,7 @@ import { useAppContext, changeState, types } from "../../context";
 import { useAxios } from "../../hooks";
 import { mapOptions } from "./constants";
 
-export default function Map() {
+export default function AppMap() {
   const { dispatch } = useAppContext();
 
   const { data: pins } = useAxios({ method: "get", url: "/pins" });

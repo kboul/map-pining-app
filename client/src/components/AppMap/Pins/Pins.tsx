@@ -1,6 +1,6 @@
 import { format } from "timeago.js";
 
-import { BootstrapIcon } from "../../../components";
+import { BootstrapIcon } from "../..";
 import MarkerWithResponsivePopup from "../MarkerWithResponsivePopup";
 import { useAppContext } from "../../../context";
 import { Label } from "../styledComponents";
