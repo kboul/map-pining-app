@@ -1,7 +1,8 @@
 import { ChangeEvent, useEffect, useState } from "react";
-import { Alert, Form } from "react-bootstrap";
+import { Alert, Label, TextInput } from "flowbite-react";
+import { HiInformationCircle } from "react-icons/hi";
 
-import { ModalApp } from "../../components";
+import { AppModal } from "../../components";
 import { changeState, types, useAppContext } from "../../context";
 import { useAxios } from "../../hooks";
 import { getFields } from "./utils";
@@ -40,11 +41,7 @@ export default function LoginModal() {
   }, [data]);
 
   useEffect(() => {
-    if (callApi)
-      setLocalState(prevState => ({
-        ...prevState,
-        callApi: false
-      }));
+    if (callApi) setLocalState(prevState => ({ ...prevState, callApi: false }));
   }, [callApi]);
 
   const handleAction = () => {
@@ -70,29 +67,33 @@ export default function LoginModal() {
   const fields = getFields(username, password);
 
   return (
-    <ModalApp
+    <AppModal
       actionBtnDisabled={actionBtnDisabled}
       onAction={handleAction}
       onClose={handleLoginModalClose}
       show={showLoginModal}
       title="Login">
       {fields.map(({ id, label, name, type, value }) => (
-        <Form.Group className="mb-3" key={`login-form-group-${id}`}>
-          <Form.Label>{label}</Form.Label>
-          <Form.Control
-            isInvalid={!value}
-            name={name}
-            type={type}
-            onChange={handleChange}
-            placeholder={label}
-            value={value}
-          />
-          <Form.Control.Feedback type="invalid">
-            Value cannot be left empty
-          </Form.Control.Feedback>
-        </Form.Group>
+        <form className="flex flex-col gap-4" key={id}>
+          <div className="mb-2">
+            <div className="mb-2 block">
+              <Label htmlFor={label} value={label} />
+            </div>
+            <TextInput
+              name={name}
+              onChange={handleChange}
+              type={type}
+              placeholder={label}
+              value={value}
+            />
+          </div>
+        </form>
       ))}
-      {error && <Alert variant="danger">{error}</Alert>}
-    </ModalApp>
+      {error && (
+        <Alert color="failure" icon={HiInformationCircle}>
+          <span className="font-medium">Info alert!</span> {error}
+        </Alert>
+      )}
+    </AppModal>
   );
 }
