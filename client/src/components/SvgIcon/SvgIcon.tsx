@@ -1,18 +1,18 @@
 import paths from "./paths";
 
-interface BootstrapIconProps {
+interface SvgIconIconProps {
   fill?: string;
   icon: string;
   width?: string;
   height?: string;
 }
 
-export default function BootstrapIcon({
+export default function SvgIcon({
   fill = "black",
   height = "20",
   icon,
   width = "20"
-}: BootstrapIconProps) {
+}: SvgIconIconProps) {
   return (
     <svg
       fill={fill}
