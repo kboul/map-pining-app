@@ -7,16 +7,15 @@ import {
 } from "react";
 import { Marker, Popup, useMap } from "react-leaflet";
 import L from "leaflet";
+import { Button, Label, Select, TextInput, Textarea } from "flowbite-react";
 
-import { Label } from "../styledComponents";
-import * as Styled from "./styledComponents";
 import { useAxios } from "../../../hooks";
 import { changeState, useAppContext, types } from "../../../context";
 import { getNewPin } from "./utils";
 import State from "./model";
 import { initialState } from "./constants";
 
-export default function NewPin() {
+export default function AddNewPinForm() {
   const map = useMap();
   const {
     state: { currentUser, pins },
@@ -93,31 +92,47 @@ export default function NewPin() {
     return (
       <Marker position={newPinPosition} icon={icon} ref={markerRef}>
         <Popup ref={popupRef}>
-          <Styled.NewPinForm onSubmit={handleSubmit}>
-            <Label>Title</Label>
-            <Styled.TitleInput
-              onChange={handleTitleChange("title")}
-              placeholder="Enter a title"
-              value={title}
-            />
-            <Label>Review</Label>
-            <Styled.ReviewTextarea
-              onChange={handleReviewChange("review")}
-              placeholder="Tell us something about the place"
-              value={review}
-            />
-            <Label>Rating</Label>
-            <Styled.RatingSelect onChange={handleRatingChange("rating")}>
-              {new Array(5).fill(undefined).map((_, id) => (
-                <option key={id} value={id + 1}>
-                  {id + 1}
-                </option>
-              ))}
-            </Styled.RatingSelect>
-            <Styled.AddPinButton disabled={addPinBtnDisabled} type="submit">
+          <form className="flex flex-col w-60" onSubmit={handleSubmit}>
+            <div className="mb-2">
+              <div className="mb-2 block">
+                <Label htmlFor="title" value="Title" />
+              </div>
+              <TextInput
+                onChange={handleTitleChange("title")}
+                placeholder="Enter a title"
+                value={title}
+              />
+            </div>
+
+            <div className="mb-2">
+              <div className="mb-2 block">
+                <Label htmlFor="review" value="Review" />
+              </div>
+              <Textarea
+                onChange={handleReviewChange("review")}
+                placeholder="Tell us something about the place"
+                rows={4}
+                value={review}
+              />
+            </div>
+
+            <div className="mb-2">
+              <div className="mb-2 block">
+                <Label htmlFor="rating" value="Rating" />
+              </div>
+              <Select onChange={handleRatingChange("rating")}>
+                {new Array(5).fill(undefined).map((_, id) => (
+                  <option key={id} value={id + 1}>
+                    {id + 1}
+                  </option>
+                ))}
+              </Select>
+            </div>
+
+            <Button disabled={addPinBtnDisabled} type="submit">
               Add Pin
-            </Styled.AddPinButton>
-          </Styled.NewPinForm>
+            </Button>
+          </form>
         </Popup>
       </Marker>
     );
