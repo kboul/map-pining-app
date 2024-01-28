@@ -1,8 +1,7 @@
 import { ChangeEvent, useEffect, useState } from "react";
-import { Alert, Label, TextInput } from "flowbite-react";
-import { HiInformationCircle } from "react-icons/hi";
+import { Label, TextInput } from "flowbite-react";
 
-import { AppModal } from "../../components";
+import { AppAlertError, AppModal } from "../../components";
 import { changeState, types, useAppContext } from "../../context";
 import { useAxios } from "../../hooks";
 import { getFields } from "./utils";
@@ -89,11 +88,7 @@ export default function LoginModal() {
           </div>
         </form>
       ))}
-      {error && (
-        <Alert color="failure" icon={HiInformationCircle}>
-          <span className="font-medium">Info alert!</span> {error}
-        </Alert>
-      )}
+      {error && <AppAlertError error={error} />}
     </AppModal>
   );
 }
