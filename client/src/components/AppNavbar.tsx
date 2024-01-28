@@ -46,7 +46,7 @@ export default function AppNavbar() {
               <Dropdown.Header>
                 <span className="block text-sm">{currentUser}</span>
                 <span className="block truncate text-sm font-medium">
-                  name@flowbite.com
+                  {currentUser}@gmail.com
                 </span>
               </Dropdown.Header>
             )}
