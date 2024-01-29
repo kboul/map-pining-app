@@ -56,7 +56,7 @@ export default function AddNewPinForm() {
     e.preventDefault();
 
     if (!currentUser) {
-      popupRef.current._close();
+      map.closePopup(popupRef.current);
       setState(initialState);
       return alert("Please login to be able to save a pin!");
     }
@@ -67,7 +67,7 @@ export default function AddNewPinForm() {
   useEffect(() => {
     if (!newPin) return;
 
-    if (popupRef.current) popupRef.current._close();
+    map.closePopup(popupRef.current);
     dispatch(changeState(types.pinsChanged, { pins: [...pins, newPin] }));
     setState(initialState);
   }, [newPin]);
