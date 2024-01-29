@@ -1,12 +1,12 @@
 {
   "name": "client",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "private": true,
   "dependencies": {
     "axios": "^0.24.0",
     "flowbite-react": "^0.7.2",
-    "leaflet": "^1.7.1",
-    "leaflet-responsive-popup": "^0.6.4",
+    "leaflet": "^1.8.0",
+    "leaflet-responsive-popup": "^1.0.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-icons": "^5.0.1",
