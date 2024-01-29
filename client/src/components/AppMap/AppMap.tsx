@@ -2,13 +2,13 @@ import { useEffect } from "react";
 import { MapContainer, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 
-import NewPin from "./NewPin";
+import AddNewPinForm from "./AddNewPinForm";
 import Pins from "./Pins";
 import { useAppContext, changeState, types } from "../../context";
 import { useAxios } from "../../hooks";
 import { mapOptions } from "./constants";
 
-export default function Map() {
+export default function AppMap() {
   const { dispatch } = useAppContext();
 
   const { data: pins } = useAxios({ method: "get", url: "/pins" });
@@ -28,7 +28,7 @@ export default function Map() {
         url={mapOptions.tileUrl}
       />
       <Pins />
-      <NewPin />
+      <AddNewPinForm />
     </MapContainer>
   );
 }

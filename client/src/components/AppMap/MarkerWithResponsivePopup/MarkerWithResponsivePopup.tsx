@@ -5,14 +5,14 @@ import L from "leaflet";
 import "leaflet-responsive-popup";
 import "leaflet-responsive-popup/leaflet.responsive.popup.css";
 
-import { BootstrapIcon } from "../../../components";
+import { SvgIcon } from "../..";
 import MarkerWithResponsivePopupProps from "./model";
 import { useAppContext } from "../../../context";
 
 const getIcon = (color: string) =>
   L.divIcon({
     html: ReactDOMServer.renderToString(
-      <BootstrapIcon height="32" fill={color} icon="geoAltFill" width="32" />
+      <SvgIcon height="32" fill={color} icon="geoAltFill" width="32" />
     ),
     className: "",
     iconAnchor: [15, 28],

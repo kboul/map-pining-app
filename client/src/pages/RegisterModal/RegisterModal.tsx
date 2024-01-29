@@ -1,8 +1,8 @@
 import { ChangeEvent, useEffect, useState } from "react";
-import { Alert, Form } from "react-bootstrap";
+import { Label, TextInput } from "flowbite-react";
 
 import { changeState, types, useAppContext } from "../../context";
-import { ModalApp } from "../../components";
+import { AppAlertError, AppModal } from "../../components";
 import { useAxios } from "../../hooks";
 import { getFields } from "./utils";
 import { initialState } from "./constants";
@@ -30,11 +30,7 @@ export default function RegisterModal() {
   }, [data]);
 
   useEffect(() => {
-    if (callApi)
-      setLocalState(prevState => ({
-        ...prevState,
-        callApi: false
-      }));
+    if (callApi) setLocalState(prevState => ({ ...prevState, callApi: false }));
   }, [callApi]);
 
   const handleAction = () => {
@@ -60,29 +56,29 @@ export default function RegisterModal() {
   const fields = getFields(username, email, password);
 
   return (
-    <ModalApp
+    <AppModal
       actionBtnDisabled={actionBtnDisabled}
       onAction={handleAction}
       onClose={handleRegisterModalClose}
       show={showRegisterModal}
       title="Register">
       {fields.map(({ id, label, name, type, value }) => (
-        <Form.Group className="mb-3" key={`register-form-group-${id}`}>
-          <Form.Label>{label}</Form.Label>
-          <Form.Control
-            isInvalid={!value}
-            name={name}
-            type={type}
-            onChange={handleChange}
-            placeholder={label}
-            value={value}
-          />
-          <Form.Control.Feedback type="invalid">
-            Value cannot be left empty
-          </Form.Control.Feedback>
-        </Form.Group>
+        <form className="flex flex-col gap-4" key={id}>
+          <div className="mb-2">
+            <div className="mb-2 block">
+              <Label htmlFor={label} value={label} />
+            </div>
+            <TextInput
+              name={name}
+              onChange={handleChange}
+              type={type}
+              placeholder={label}
+              value={value}
+            />
+          </div>
+        </form>
       ))}
-      {error && <Alert variant="danger">Something went wrong!</Alert>}
-    </ModalApp>
+      {error && <AppAlertError error="Something went wrong!" />}
+    </AppModal>
   );
 }
